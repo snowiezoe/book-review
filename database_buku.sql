@@ -1,5 +1,6 @@
 -- Buat database
-USE if0_42335827_buku;
+CREATE DATABASE BookVerse;
+USE BookVerse;
 
 -- Tabel users
 CREATE TABLE users (
