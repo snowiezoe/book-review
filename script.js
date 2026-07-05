@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto hide alert setelah 5 detik
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(function(alert) {
         setTimeout(function() {
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Validasi Form Tambah Buku
 function validateBookForm() {
     const title = document.querySelector('input[name="title"]');
     const author = document.querySelector('input[name="author"]');
@@ -59,7 +57,6 @@ function validateBookForm() {
     return true;
 }
 
-// Validasi Form Register
 function validateRegisterForm() {
     const name = document.querySelector('input[name="name"]');
     const email = document.querySelector('input[name="email"]');
@@ -98,7 +95,6 @@ function validateRegisterForm() {
     return true;
 }
 
-// Validasi Form Login
 function validateLoginForm() {
     const email = document.querySelector('input[name="email"]');
     const password = document.querySelector('input[name="password"]');
@@ -118,13 +114,12 @@ function validateLoginForm() {
     return true;
 }
 
-// ===== 3. CEK EMAIL VALID =====
 function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-// ===== 4. KONFIRMASI HAPUS =====
+
 function confirmDelete(bookTitle) {
     if (bookTitle) {
         return confirm('⚠️ Yakin ingin menghapus buku "' + bookTitle + '"?');
@@ -132,7 +127,7 @@ function confirmDelete(bookTitle) {
     return confirm('⚠️ Yakin ingin menghapus data ini?');
 }
 
-// ===== 5. SEARCH/ FILTER BUKU =====
+
 function searchBooks() {
     const input = document.getElementById('searchInput');
     if (!input) return;
@@ -154,7 +149,6 @@ function searchBooks() {
         }
     });
     
-    // Tampilkan pesan jika tidak ada hasil
     const emptyMessage = document.getElementById('emptySearchMessage');
     if (found === 0 && bookCards.length > 0) {
         if (!emptyMessage) {
@@ -173,7 +167,6 @@ function searchBooks() {
     }
 }
 
-// ===== 6. RATING BINTANG (Preview) =====
 function previewRating(value) {
     const stars = document.querySelectorAll('.star-preview');
     if (!stars.length) return;
@@ -189,7 +182,6 @@ function previewRating(value) {
     });
 }
 
-// ===== 7. SHOW/HIDE PASSWORD =====
 function togglePasswordVisibility() {
     const passwordInputs = document.querySelectorAll('input[type="password"]');
     passwordInputs.forEach(function(input) {
@@ -211,7 +203,6 @@ function togglePasswordVisibility() {
     });
 }
 
-// ===== 8. IMAGE PREVIEW UPLOAD =====
 function previewCover(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
@@ -226,7 +217,6 @@ function previewCover(input) {
     }
 }
 
-// ===== 9. DARK MODE TOGGLE =====
 function toggleDarkMode() {
     const body = document.body;
     const isDark = body.getAttribute('data-theme') === 'dark';
@@ -240,7 +230,6 @@ function toggleDarkMode() {
     }
 }
 
-// Load saved theme
 document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -248,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===== 10. BACK TO TOP BUTTON =====
 function setupBackToTop() {
     const btn = document.getElementById('backToTop');
     if (!btn) return;
@@ -266,9 +254,7 @@ function setupBackToTop() {
     });
 }
 
-// ===== 11. KEYBOARD SHORTCUTS =====
 document.addEventListener('keydown', function(e) {
-    // Ctrl + K = Focus search
     if (e.ctrlKey && e.key === 'k') {
         e.preventDefault();
         const search = document.getElementById('searchInput');
@@ -277,7 +263,6 @@ document.addEventListener('keydown', function(e) {
         }
     }
     
-    // Escape = Close modal / Clear search
     if (e.key === 'Escape') {
         const search = document.getElementById('searchInput');
         if (search) {
@@ -287,14 +272,12 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// ===== 12. AUTO RESIZE TEXTAREA =====
 function autoResizeTextarea(textarea) {
     if (!textarea) return;
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
 }
 
-// ===== 13. COUNTER CHARACTER =====
 function countCharacters(textarea, counterId, maxChars) {
     if (!textarea || !counterId) return;
     
@@ -311,7 +294,6 @@ function countCharacters(textarea, counterId, maxChars) {
     }
 }
 
-// ===== 14. SORT BOOKS =====
 function sortBooks(sortBy) {
     const grid = document.querySelector('.book-grid');
     if (!grid) return;
@@ -332,7 +314,6 @@ function sortBooks(sortBy) {
             bValue = parseFloat(b.querySelector('.rating')?.textContent?.replace('⭐', '') || 0);
             return bValue - aValue;
         } else if (sortBy === 'newest') {
-            // Default order, no sorting needed
             return 0;
         }
         
@@ -341,7 +322,6 @@ function sortBooks(sortBy) {
         return 0;
     });
     
-    // Re-append sorted cards
     if (sortBy !== 'newest') {
         cards.forEach(function(card) {
             grid.appendChild(card);
@@ -349,7 +329,6 @@ function sortBooks(sortBy) {
     }
 }
 
-// ===== 15. COPY TO CLIPBOARD =====
 function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function() {
@@ -372,7 +351,6 @@ function fallbackCopy(text) {
     showNotification('✅ Berhasil disalin!');
 }
 
-// ===== 16. NOTIFICATION =====
 function showNotification(message) {
     const notif = document.createElement('div');
     notif.className = 'notification';
@@ -403,8 +381,6 @@ function showNotification(message) {
     }, 3000);
 }
 
-// ===== 17. ANIMATIONS =====
-// Add animation styles dynamically
 const styleSheet = document.createElement('style');
 styleSheet.textContent = `
     @keyframes slideIn {
@@ -456,9 +432,7 @@ styleSheet.textContent = `
 `;
 document.head.appendChild(styleSheet);
 
-// ===== 18. INITIALIZE ALL =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto-hide alerts
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(function(alert) {
         setTimeout(function() {
@@ -470,16 +444,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     });
     
-    // Setup search
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('keyup', searchBooks);
     }
     
-    // Setup back to top
     setupBackToTop();
     
-    // Setup textarea auto resize
     const textareas = document.querySelectorAll('textarea');
     textareas.forEach(function(textarea) {
         textarea.addEventListener('input', function() {
@@ -487,11 +458,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Setup form validation
     const forms = document.querySelectorAll('form');
     forms.forEach(function(form) {
         form.addEventListener('submit', function(e) {
-            // Check if it's login form
             if (this.querySelector('input[name="email"]') && 
                 this.querySelector('input[name="password"]') && 
                 !this.querySelector('input[name="name"]')) {
@@ -500,7 +469,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Check if it's register form
             if (this.querySelector('input[name="name"]') && 
                 this.querySelector('input[name="email"]') && 
                 this.querySelector('input[name="password"]')) {
@@ -509,7 +477,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Check if it's book form
             if (this.querySelector('input[name="title"]') && 
                 this.querySelector('input[name="author"]')) {
                 if (!validateBookForm()) {

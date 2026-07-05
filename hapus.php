@@ -1,4 +1,3 @@
-// hapus
 <?php
 session_start();
 

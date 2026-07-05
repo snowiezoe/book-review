@@ -1,4 +1,3 @@
-// update
 <?php
 session_start();
 
